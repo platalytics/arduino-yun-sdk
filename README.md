@@ -2,6 +2,7 @@
 
 Before you dive in to setting up the **SDK** for your device there are some instructions that need to be followed along.
 
+0. You need to expand your Arduino Yun disk space. For more info and tutorial go to [https://www.arduino.cc/en/Tutorial/ExpandingYunDiskSpace](https://www.arduino.cc/en/Tutorial/ExpandingYunDiskSpace)
 1. You need a `linux`-based environment to setup
 2. Make sure you have `expect` utility installed
 
