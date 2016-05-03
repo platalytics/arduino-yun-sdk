@@ -33,6 +33,7 @@ expect "*~#" { send "easy_install pip\r" }
 expect "*~#" { send "pip install /root/lib/paho-mqtt-1.1.tar.gz\r" }
 expect "*~#" { send "pip install /root/lib/kafka-python-1.1.1.tar.gz\r" }
 expect "*~#" { send "chmod 775 /root/monitoring/log_monitoring.py\r" }
+expect "*~#" { send "chmod 775 /root/src/mqtt/mqtt-sender.py\r" }
 expect "*~#" { send "nohup sh -c '/root/monitoring/log_monitoring.py $deviceId &'\r" }
 
 expect "*~#" { send "exit\r" }

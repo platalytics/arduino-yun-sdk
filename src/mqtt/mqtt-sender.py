@@ -12,22 +12,19 @@ MQTT client program parsing command line arguments
 """
 
 def main():
-    if (len(sys.argv) != 4):
+    if (len(sys.argv) != 5):
         print("Invalid arguments.")
         print("Pass arguments in correct order as below:")
-        print("./mqtt-sender.py <host> <topic> <payload>")
+        print("./mqtt-sender.py <host> <port> <topic> <payload>")
         sys.exit(1)
     
     # retrieving arguments
     host = str(sys.argv[1])
-    topic = str(sys.argv[2])
-    payload = str(sys.argv[3])
-    
-    print("host: " + host)
-    print("topic: " + topic)
-    print("payload: " + payload)
+    port = str(sys.argv[2])
+    topic = str(sys.argv[3])
+    payload = str(sys.argv[4])
 
-    publish.single(topic, payload, hostname = host)
+    publish.single(topic, payload, hostname = host, port = port)
     
     print("Payload published!")
 
