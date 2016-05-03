@@ -7,7 +7,7 @@ Before you dive in to setting up the **SDK** for your device there are some inst
 
    Get on **Ubuntu** executing following command in terminal
 
-       $ sudo apt-get install expect
+        $ sudo apt-get install expect
 
 Add execution permissions to script `deploy.sh`
 
