@@ -1,12 +1,12 @@
 #!/bin/bash
 
 if [ $# -ne 5 ]; then
-    echo "usage: ./deploy.sh <board-ip> <board-username> <board-password> <hub-id> <device-id>"
+    echo "usage: ./deploy.sh <board-ip> <board-username> <board-password> <device-group-id> <device-id>"
 else
 	boardIp=$1
 	boardUserName=$2
 	boardPassword=$3
-	hubId=$4
+	deviceGroupId=$4
 	deviceId=$5
 
 	libraryPath="./lib"
@@ -27,4 +27,6 @@ else
 
 	# setup
 	./setup.sh $boardIp $boardUserName $boardPassword $deviceId
+
+	curl -H "Content-Type: application/json" -X POST -d '{"device_key":"'$deviceId'","status":"true"}' http://54.89.145.136:5000/iot/api/devices/deployFinish?api_key=35454545
 fi

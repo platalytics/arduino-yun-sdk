@@ -32,6 +32,12 @@ expect "*~#" { send "easy_install pip\r" }
 # installing local/offline versions of supported python libraries 
 expect "*~#" { send "pip install /root/lib/paho-mqtt-1.1.tar.gz\r" }
 expect "*~#" { send "pip install /root/lib/kafka-python-1.1.1.tar.gz\r" }
+
+##<<OTHER_PACKAGES
+##    expect "*~#" { send "pip install /root/lib/amqp-1.4.7.tar.gz\r" }
+##    expect "*~#" { send "pip install /root/lib/CoAPthon-4.0.0.tar.gz -r /root/lib/coap_req\r" }
+##OTHER_PACKAGES
+
 expect "*~#" { send "chmod 775 /root/monitoring/log_monitoring.py\r" }
 expect "*~#" { send "chmod 775 /root/src/mqtt/mqtt-sender.py\r" }
 expect "*~#" { send "nohup sh -c '/root/monitoring/log_monitoring.py $deviceId &'\r" }
