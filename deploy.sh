@@ -13,7 +13,7 @@ else
 
 	libraryPath="./lib"
 	codePath="./src"
-	monitoringDaemonPath="./monitoring"
+	monitoringDaemonPath="./logger"
 
 	chmod 755 ./copy.sh
 	chmod 755 ./setup.sh
