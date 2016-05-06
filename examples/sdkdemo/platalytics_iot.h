@@ -2,7 +2,7 @@
 #define PLATALYTICS_IOT_H
 
 
-#define DEVICE_ID "iot/firebrigade/sensor"
+#define DEVICE_ID "5728e91f1a91c52f0115784c"
 #define BROKER_IP "45.55.159.119"
 
 #define PUBLISH_TOPIC DEVICE_ID
