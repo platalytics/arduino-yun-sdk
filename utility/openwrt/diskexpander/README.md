@@ -7,8 +7,8 @@ Run `./memory-expansion.sh` on Arduino terminal.
 1. copy memory-expansion.sh in your Arduino Yun device
 2. set permissions
 
-            chmod +x /root/memory-expansion.sh
+    chmod +x /root/memory-expansion.sh
       
 3. execute the script
-
-            /root/memory-expansion.sh
+    
+    /root/memory-expansion.sh
