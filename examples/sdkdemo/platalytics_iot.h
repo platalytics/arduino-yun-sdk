@@ -2,10 +2,12 @@
 #define PLATALYTICS_IOT_H
 
 
-#define DEVICE_ID "5728e91f1a91c52f0115784c"
+#define DEVICE_ID "<PUT_YOUR_DEVICE_ID_HERE>"
 #define BROKER_IP "45.55.159.119"
 
 #define PUBLISH_TOPIC DEVICE_ID
 #define CALLBACK_TOPIC DEVICE_ID"_callback"
+
+#define NOT_AVAILABLE "N/A"
 
 #endif

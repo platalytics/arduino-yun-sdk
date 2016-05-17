@@ -1,8 +1,6 @@
 /**
-
-Platalytics Inc.
-Demo application for Arduino SDK
-
+ * Platalytics Inc. (C) 2016
+ * Firebrigade demo application for Arduino SDK
 */
 
 #include <Bridge.h>
@@ -95,7 +93,7 @@ void loop() {
 
     row.concat(MAC);
     row.concat(COMMA_SEPARATOR);
-    row.concat("08/03/2016 ");
+    row.concat("17/05/2016 ");
     row.concat(gps.hour);
     row.concat(":");
     row.concat(gps.minute);
@@ -111,9 +109,9 @@ void loop() {
       row.concat(value);
     }
     else {
-      row.concat("31.475776");
+      row.concat(NOT_AVAILABLE);
       row.concat(COMMA_SEPARATOR);
-      row.concat("74.334676");
+      row.concat(NOT_AVAILABLE);
     }
 
     row.concat(COMMA_SEPARATOR);
