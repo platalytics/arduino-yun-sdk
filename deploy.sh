@@ -1,15 +1,14 @@
 #!/bin/bash
 
 if [ $# -ne 7 ]; then
-    echo "usage: ./deploy.sh <board-ip> <board-username> <board-password> <device-key> <device-group-key> <host> <api-key>"
+    echo "usage: ./deploy.sh <board-ip> <board-username> <board-password> <device-key> <host> <api-key>"
 else
 	boardIp=$1
 	boardUserName=$2
 	boardPassword=$3
 	deviceId=$4
-	deviceGroupId=$5
-    host=$6
-    apiKey=$7
+    host=$5
+    apiKey=$6
 
 	libraryPath="./lib"
 	codePath="./src"
