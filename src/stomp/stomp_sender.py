@@ -1,7 +1,10 @@
 #!/usr/bin/env python
+
 import time
 import sys
 import stomp
+
+from optparse import OptionParser
 
 
 def produce(queue, message):
@@ -47,8 +50,8 @@ if __name__ == '__main__':
         conn.start()
         # optional connect keyword args "username" and "password" like so:
         if options.user:
-            conn.connect(username=options.user, password=options.pass, wait=True)
-        else
+            conn.connect(username=options.user, password=options.password, wait=True)
+        else:
             conn.connect()
     except:
         print("Cannot connect")
