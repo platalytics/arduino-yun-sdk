@@ -1,6 +1,6 @@
 # Arduino Yún SDK
 
-Before you dive in to setting up the SDK for your device there are some instructions that need to be followed along.
+Before you dive in to setting up the **SDK** for your device there are some instructions that need to be followed along.
 
 1. Expand disk space using `utility/openwrt/diskexpander/memory-expansion.sh`
 2. You need a `linux`-based environment to setup

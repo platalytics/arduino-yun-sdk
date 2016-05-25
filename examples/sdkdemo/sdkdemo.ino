@@ -47,7 +47,7 @@ void setup() {
 
   Serial.println("connecting...");
   while (!client.connect("arduino", "try", "try")) Serial.print(".");
-  client.subscribe(CALLBACK_TOPIC);
+  //client.subscribe(CALLBACK_TOPIC);
 
   pinMode(FIRE_LED_PIN, OUTPUT);
   pinMode(NO_FIRE_LED_PIN, OUTPUT);
@@ -62,7 +62,7 @@ void setup() {
 void loop() {
   client.loop();
   char c = gps.read();
-  
+
   String row;
   char value[10];
 
@@ -118,7 +118,7 @@ void loop() {
     if (fire && again) {
       row.concat("Fire");
       client.publish(PUBLISH_TOPIC, row);
-      Serial.println(row);  
+      Serial.println(row);
       again = false;
     }
     else if (!fire) {
