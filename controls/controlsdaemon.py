@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 
 
+import os
 import sys
 import paho.mqtt.client as mqtt
 
 
 def perform_action(action):
-    if action == "shutdown": print (-1)
-    elif action == "reboot": print(0)
+    if action == "shutdown": os.system("poweroff")
+    elif action == "reboot": os.system("reboot")
     else: print(1)
 
 
@@ -15,11 +16,12 @@ def on_message(mosq, obj, msg):
     perform_action(str(msg.payload))
 
 
-mqttc = mqtt.Client()
+client = mqtt.Client()
 
-mqttc.on_message = on_message
-mqttc.connect("45.55.159.119", 1883, 60)
+client.on_message = on_message
+client.connect("45.55.159.119", 1883, 60)
 
-mqttc.subscribe(str(sys.argv[1]) + "controlcallback", 0)
+f = open('/var/controldaemon.conf', 'r')
+client.subscribe(f.read()[:-1], 0)
 
-mqttc.loop_forever()
+client.loop_forever()
