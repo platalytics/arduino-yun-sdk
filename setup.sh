@@ -39,9 +39,9 @@ expect "*~#" { send "pip install /root/lib/kafka-python-1.1.1.tar.gz\r" }
 # expect "*~#" { send "pip install /root/lib/amqp-1.4.7.tar.gz\r" }
 # expect "*~#" { send "pip install /root/lib/CoAPthon-4.0.0.tar.gz -r /root/lib/coap_req\r" }
 
-expect "*~#" { send "chmod 775 /root/logger/logger.py\r" }
+expect "*~#" { send "chmod 775 /root/logger/loggerdaemon.py\r" }
 expect "*~#" { send "chmod 775 /root/src/mqtt/mqtt-sender.py\r" }
-expect "*~#" { send "nohup sh -c '/root/logger/logger.py $deviceId &'\r" }
+expect "*~#" { send "nohup sh -c '/root/logger/loggerdaemon.py $deviceId &'\r" }
 
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'$deviceId'\",\"status\":\"true\"}' \"http://$host/iot/api/devices/deployFinish?api_key=$apiKey\"\r" }
 expect "*~#" { send "exit\r" }
