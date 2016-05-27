@@ -1,3 +1,4 @@
+#!/bin/sh
 # copy this memory expansion in your Arduino Yun device
 # set permissions 
 # chmod +x /root/memory-expansion.sh
