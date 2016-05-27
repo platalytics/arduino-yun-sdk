@@ -1,31 +1,31 @@
 #!/bin/bash
 
-if [ $# -ne 7 ]; then
+if [ $# -ne 6 ]; then
     echo "usage: ./deploy.sh <board-ip> <board-username> <board-password> <device-key> <host> <api-key>"
 else
-	boardIp=$1
-	boardUserName=$2
-	boardPassword=$3
-	deviceId=$4
+	board_ip=$1
+	board_username=$2
+	board_password=$3
+	device_id=$4
     host=$5
-    apiKey=$6
+    api_key=$6
 
-	libraryPath="./lib"
-	codePath="./src"
-	monitoringDaemonPath="./logger"
+	libraries="./lib"
+	code_path="./src"
+	core_path="./core_path"
 
 	chmod 755 ./copy.sh
 	chmod 755 ./setup.sh
 
 	# monitoring script deployment
-	./copy.sh $boardIp $boardUserName $boardPassword $monitoringDaemonPath /root/ 1>/dev/null
+	./copy.sh $board_ip $board_username $board_password $core_path /root/ 1>/dev/null
 
-	# copying code files
-	./copy.sh $boardIp $boardUserName $boardPassword $codePath /root/ 1>/dev/null
+	# copying code_path files
+	./copy.sh ${board_ip} ${board_username} ${board_password} ${code_path} /root/ 1>/dev/null
 
 	# copying library files
-	./copy.sh $boardIp $boardUserName $boardPassword $libraryPath /root/ 1>/dev/null
+	./copy.sh ${board_ip} ${board_username} ${board_password} ${libraries} /root/ 1>/dev/null
 
 	# setup
-	./setup.sh $boardIp $boardUserName $boardPassword $deviceId $host $apiKey
+    ./setup.sh ${board_ip} ${board_username} ${board_password} ${device_id} ${host} ${api_key}
 fi
