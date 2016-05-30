@@ -6,13 +6,17 @@ import paho.mqtt.client as mqtt
 
 
 def perform_action(action):
-    if action == "shutdown": os.system("poweroff")
-    elif action == "reboot": os.system("reboot")
-    else: print("ERROR: action not registered!")
+    if action == "shutdown":
+        os.system("poweroff")
+    elif action == "reboot":
+        os.system("reboot")
+    else:
+        print("ERROR: action not registered!")
 
 
 def on_message(mosq, obj, msg):
     perform_action(str(msg.payload))
+
 
 client = mqtt.Client()
 
