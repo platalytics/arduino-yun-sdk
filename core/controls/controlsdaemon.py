@@ -4,6 +4,7 @@ import os
 import sys
 import paho.mqtt.client as mqtt
 
+
 mqtt_broker_ip = '45.55.159.119'
 mqtt_broker_port = 1883
 

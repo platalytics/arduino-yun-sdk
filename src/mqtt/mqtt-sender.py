@@ -3,6 +3,7 @@
 import sys
 import paho.mqtt.publish as publish
 
+
 """
 MQTT client program parsing command line arguments
 
