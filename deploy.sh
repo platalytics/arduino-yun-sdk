@@ -10,15 +10,16 @@ else
     host=$5
     api_key=$6
 
+    # defining paths
 	libraries="./lib"
 	code_path="./src"
-	core_path="./core_path"
+	core_path="./core"
 
 	chmod 755 ./copy.sh
 	chmod 755 ./setup.sh
 
 	# monitoring script deployment
-	./copy.sh $board_ip $board_username $board_password $core_path /root/ 1>/dev/null
+	./copy.sh ${board_ip} ${board_username} ${board_password} ${core_path} /root/ 1>/dev/null
 
 	# copying code_path files
 	./copy.sh ${board_ip} ${board_username} ${board_password} ${code_path} /root/ 1>/dev/null

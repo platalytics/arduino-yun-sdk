@@ -1,19 +1,17 @@
 #!/usr/bin/env python
 
-import sys, os, time, json
-from kafka import KafkaProducer
+import paho.mqtt.publish as publish
+import sys, os, time, json, random
 
 
-kafka_broker = '122.129.79.68:9092'
+broker = '45.55.159.119'
+port = '1883'
 
 # fetching topic name
-topic_name = sys.argv[1]
+f = open('/var/key.conf', 'r')
+topic_name = f.read()[:-1]
+f.close()
 
-# time delay
-loop_delay = 5
-
-# configuring producer
-producer = KafkaProducer(bootstrap_servers=kafka_broker)
 
 while True:
     # fetching memory stats
@@ -27,9 +25,11 @@ while True:
 
     process_count = int(os.popen('ps | wc -l').read())
 
-    all_stats = [{'MemoryStats': memory_stats_data}, {'ProcessStats': {'ProcessCount': process_count}}]
+    all_stats = [{'MemoryStats': memory_stats_data}, {'CPUStats': {'CPUPercentage': random.uniform(69.5, 81.9)}}, {'DiskStats': {'TotalDiskSpace': '65536','FreeDiskSpace':'24596','Used':'40940'}}]
     json_data = json.dumps(all_stats)
-    parsed = json.loads(json_data)
+    #parsed = json.loads(json_data)
 
-    producer.send(topic_name, json_data)
-    time.sleep(loop_delay)
+    print (json_data + "\n")
+
+    publish.single(topic_name+'mon', json_data, hostname=broker, port=port)
+    time.sleep(3)

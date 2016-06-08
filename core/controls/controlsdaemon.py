@@ -4,6 +4,8 @@ import os
 import sys
 import paho.mqtt.client as mqtt
 
+mqtt_broker_ip = '45.55.159.119'
+mqtt_broker_port = 1883
 
 def perform_action(action):
     if action == "shutdown":
@@ -21,7 +23,7 @@ def on_message(mosq, obj, msg):
 client = mqtt.Client()
 
 client.on_message = on_message
-client.connect("45.55.159.119", 1883, 60)
+client.connect(mqtt_broker_ip, mqtt_broker_port, 60)
 
 f = open('/var/controls.conf', 'r')
 client.subscribe(f.read()[:-1], 0)

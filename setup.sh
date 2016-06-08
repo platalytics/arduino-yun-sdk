@@ -45,11 +45,12 @@ expect "*~#" { send "chmod 775 /root/core/controls/controlsdaemon.py\r" }
 expect "*~#" { send "chmod 775 /root/src/mqtt/mqtt-sender.py\r" }
 
 # setting running daemons
-expect "*~#" { send "nohup sh -c '/root/core/logger/loggerdaemon.py $device_id' & 1>/dev/null 2>&1\r" }
+expect "*~#" { send "echo ${device_id} 1>/var/key.conf\r" }
+expect "*~#" { send "nohup sh -c '/root/core/logger/loggerdaemon.py' 1>/dev/null 2>&1 &\r" }
 expect "*~#" { send "echo ${device_id}controlcallback 1>/var/controls.conf\r" }
-expect "*~#" { send "nohup sh -c '/root/core/controls/controlsdaemon.py' & 1>/dev/null 2>&1\r" }
+expect "*~#" { send "nohup sh -c '/root/core/controls/controlsdaemon.py' 1>/dev/null 2>&1 &\r" }
 
-expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'$device_id'\",\"status\":\"true\"}' \"http://$host/iot/api/devices/deployFinish?api_key=$api_key\"\r" }
+expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
 expect "*~#" { send "exit\r" }
 
 interact

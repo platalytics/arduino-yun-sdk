@@ -25,6 +25,6 @@ expect {
 
 expect {
     eof {
-	   send_user "copied successfully\n"
+        send_user "copied successfully\n"
     }
 }
