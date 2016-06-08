@@ -8,7 +8,7 @@ broker = '45.55.159.119'
 port = '1883'
 
 # fetching topic name
-f = open('/var/key.conf', 'r')
+f = open('/root/key.conf', 'r')
 topic_name = f.read()[:-1]
 f.close()
 

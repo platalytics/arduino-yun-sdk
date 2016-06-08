@@ -18,6 +18,7 @@ else
 	chmod 755 ./copy.sh
 	chmod 755 ./setup.sh
 
+    echo "starting..."
     curl -H 'Content-Type: application/json' -X POST -d '{"device_key":"'${device_id}'","status":"true","step":"1"}' http://${host}/iot/api/devices/deploy?api_key=${api_key}
 
 	# monitoring script deployment

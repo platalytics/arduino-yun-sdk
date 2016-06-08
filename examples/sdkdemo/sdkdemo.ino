@@ -47,11 +47,14 @@ void setup() {
 
   Serial.println("connecting...");
   while (!client.connect("arduino", "try", "try")) Serial.print(".");
-  //client.subscribe(CALLBACK_TOPIC);
+  client.subscribe(CALLBACK_TOPIC);
 
   pinMode(FIRE_LED_PIN, OUTPUT);
   pinMode(NO_FIRE_LED_PIN, OUTPUT);
   gpsSerial.println(PMTK_Q_RELEASE);
+
+
+  pinMode(4, OUTPUT);
 
   timer = millis();
   again = true;
@@ -61,13 +64,13 @@ void setup() {
 
 void loop() {
   client.loop();
-  char c = gps.read();
+  //char c = gps.read();
 
   String row;
   char value[10];
 
-  if (gps.newNMEAreceived())
-    gps.parse(gps.lastNMEA());
+  //if (gps.newNMEAreceived())
+ //   gps.parse(gps.lastNMEA());
 
 
   if (timer > millis()) timer = millis();
@@ -93,7 +96,7 @@ void loop() {
 
     row.concat(MAC);
     row.concat(COMMA_SEPARATOR);
-    row.concat("17/05/2016 ");
+    row.concat("08/06/2016 ");
     row.concat(gps.hour);
     row.concat(":");
     row.concat(gps.minute);
@@ -133,6 +136,22 @@ void loop() {
 }
 
 void messageReceived(String topic, String payload, char *bytes, unsigned int length) {
-  /* to be implemented to mimic route progress dynamically */
+  // data coming in format D[HEX]:[HI/LO]
+  Serial.println(payload);
+  int pin = -1;
+  if (payload[1] >= 'A' && payload[1] <= 'D') pin = int(payload[1] - 55);
+  else pin = payload[1] - 48;
+
+  Serial.println(pin);
+
+  if (pin != -1) {
+    if (payload[3] == 'H') {
+      digitalWrite(pin, HIGH);
+      Serial.println("high");
+    } else if (payload[3] == 'L') {
+      digitalWrite(pin, LOW);
+      Serial.println("low");
+    }
+  }
 }
 
