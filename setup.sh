@@ -24,6 +24,8 @@ expect {
     -re ".*assword.*" { send "$board_password\r" }
 }
 
+expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"3\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
+
 # pre-installation setup
 expect "*~#" { send "opkg update\r" }
 expect "*~#" { send "opkg install distribute\r" }
@@ -45,12 +47,21 @@ expect "*~#" { send "chmod 775 /root/core/controls/controlsdaemon.py\r" }
 expect "*~#" { send "chmod 775 /root/src/mqtt/mqtt-sender.py\r" }
 
 # setting running daemons
+
+expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"4\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
+expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"5\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
+
 expect "*~#" { send "echo ${device_id} 1>/var/key.conf\r" }
 expect "*~#" { send "nohup sh -c '/root/core/logger/loggerdaemon.py' 1>/dev/null 2>&1 &\r" }
 expect "*~#" { send "echo ${device_id}controlcallback 1>/var/controls.conf\r" }
 expect "*~#" { send "nohup sh -c '/root/core/controls/controlsdaemon.py' 1>/dev/null 2>&1 &\r" }
 
-expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
+expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"6\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
+expect "*~#" { send "rm -rf /root/lib" }
+
+expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"7\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
+expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"8\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
+
 expect "*~#" { send "exit\r" }
 
 interact
