@@ -57,7 +57,7 @@ expect "*~#" { send "echo ${device_id}controlcallback 1>/var/controls.conf\r" }
 expect "*~#" { send "nohup sh -c '/root/core/controls/controlsdaemon.py' 1>/dev/null 2>&1 &\r" }
 
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"6\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
-expect "*~#" { send "rm -rf /root/lib" }
+expect "*~#" { send "rm -rf /root/lib\r" }
 
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"7\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"8\"}' \"http://${host}/iot/api/devices/deploy?api_key=${api_key}\"\r" }
