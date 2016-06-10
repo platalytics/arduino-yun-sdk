@@ -9,13 +9,14 @@ set board_password [lindex $argv 2]
 set device_id [lindex $argv 3]
 set host [lindex $argv 4]
 set api_key [lindex $argv 5]
+set ssh_port [lindex $argv 6]
 
 set remote_end "$board_username@$board_ip"
 
 send_user "\nmake sure your yun board is connected to internet to install these dependencies"
 send_user "\n- distribute\n- python-openssl\n- pip\n- paho-mqtt-1.1\n- kafka-python-1.1.1\n"
 
-spawn ssh $remote_end
+spawn ssh $remote_end -p $ssh_port
 expect {
     -re ".*yes/no.*" {
         send "yes\r"; exp_continue
@@ -36,7 +37,7 @@ expect "*~#" { send "easy_install pip\r" }
 
 # installing local/offline versions of supported python libraries 
 expect "*~#" { send "pip install /root/lib/paho-mqtt-1.1.tar.gz\r" }
-expect "*~#" { send "pip install /root/lib/kafka-python-1.1.1.tar.gz\r" }
+# expect "*~#" { send "pip install /root/lib/kafka-python-1.1.1.tar.gz\r" }
 
 # other protocol packages
 # expect "*~#" { send "pip install /root/lib/amqp-1.4.7.tar.gz\r" }

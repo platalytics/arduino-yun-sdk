@@ -64,13 +64,13 @@ void setup() {
 
 void loop() {
   client.loop();
-  //char c = gps.read();
+  char c = gps.read();
 
   String row;
   char value[10];
 
-  //if (gps.newNMEAreceived())
- //   gps.parse(gps.lastNMEA());
+  if (gps.newNMEAreceived())
+    gps.parse(gps.lastNMEA());
 
 
   if (timer > millis()) timer = millis();
@@ -137,20 +137,16 @@ void loop() {
 
 void messageReceived(String topic, String payload, char *bytes, unsigned int length) {
   // data coming in format D[HEX]:[HI/LO]
-  Serial.println(payload);
+  
   int pin = -1;
   if (payload[1] >= 'A' && payload[1] <= 'D') pin = int(payload[1] - 55);
   else pin = payload[1] - 48;
 
-  Serial.println(pin);
-
   if (pin != -1) {
     if (payload[3] == 'H') {
       digitalWrite(pin, HIGH);
-      Serial.println("high");
     } else if (payload[3] == 'L') {
       digitalWrite(pin, LOW);
-      Serial.println("low");
     }
   }
 }
