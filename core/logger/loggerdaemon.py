@@ -43,7 +43,5 @@ while True:
     all_stats = [{'MemoryStats': memory_stats_data}, {'CPUStats': {'CPUPercentage': cpu_utilization}}, {'DiskStats': {'TotalDiskSpace': total_disk_space,'FreeDiskSpace':total_avail_space,'Used':total_used_space}}]
     json_data = json.dumps(all_stats)
 
-    print (json_data + "\n")
-
     publish.single(topic_name+'mon', json_data, hostname=mqtt_broker_ip, port=mqtt_broker_port)
     time.sleep(3)
