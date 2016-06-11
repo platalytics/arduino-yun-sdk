@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 import paho.mqtt.publish as publish
 import sys, os, time, json, random
