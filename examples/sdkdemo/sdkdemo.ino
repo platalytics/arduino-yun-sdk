@@ -121,12 +121,14 @@ void loop() {
     if (fire && again) {
       row.concat("Fire");
       client.publish(PUBLISH_TOPIC, row);
+      client.publish(PUBLISH_TOPIC_HELPER, row);
       Serial.println(row);
       again = false;
     }
     else if (!fire) {
       row.concat("NoFire");
       client.publish(PUBLISH_TOPIC, row);
+      client.publish(PUBLISH_TOPIC_HELPER, row);
       Serial.println(row);
       again = true;
     }

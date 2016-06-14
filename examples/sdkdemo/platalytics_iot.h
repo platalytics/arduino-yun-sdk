@@ -2,8 +2,8 @@
 #define PLATALYTICS_IOT_H
 
 
-#define KEY                   "575809e7044bc94f3ad0569e"
-#define GROUP_KEY             "5735c3e76a37c7ea3bbf0ffd"
+#define KEY                   "575fc9e40cab4ff11a117359"
+#define GROUP_KEY             "575f861c2860ea2057d0566c"
 #define BROKER_IP             "45.55.159.119"
 
 #define PUBLISH_TOPIC         GROUP_KEY
