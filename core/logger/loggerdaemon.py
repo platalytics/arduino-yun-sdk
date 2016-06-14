@@ -40,7 +40,7 @@ while True:
     total_used_space = (float(disk.f_bsize * (disk.f_blocks - disk.f_bfree))) / 1024
     total_avail_space = (float(disk.f_bsize * disk.f_bfree)) / 1024
 
-    all_stats = [{'MemoryStats': memory_stats_data}, {'CPUStats': {'CPUPercentage': cpu_utilization}}, {'DiskStats': {'TotalDiskSpace': total_disk_space,'FreeDiskSpace':total_avail_space,'Used':total_used_space}}]
+    all_stats = [{'MemoryStats': memory_stats_data}, {'CPUStats': {'CPUPercentage': cpu_utilization ,'ThreadCount':0,'ProcessCount':process_count}}, {'DiskStats': {'TotalDiskSpace': total_disk_space,'FreeDiskSpace':total_avail_space,'Used':total_used_space}}]
     json_data = json.dumps(all_stats)
 
     publish.single(topic_name+'mon', json_data, hostname=mqtt_broker_ip, port=mqtt_broker_port)

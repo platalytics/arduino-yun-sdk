@@ -26,7 +26,6 @@ expect {
 
 
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"3\"}' ${frontend_host}\r" }
-
 # pre-installation
 expect "*~#" { send "opkg update\r" }
 expect "*~#" { send "opkg install distribute\r" }
