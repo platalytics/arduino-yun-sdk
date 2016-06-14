@@ -41,11 +41,11 @@ void setup() {
   gps.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ);
   gps.sendCommand(PGCMD_ANTENNA);
 
-  Serial.println("REBOOT");
+  //Serial.println("REBOOT");
 
   client.begin(BROKER_IP, net);
 
-  Serial.println("connecting...");
+  //Serial.println("connecting...");
   while (!client.connect("arduino", "try", "try")) Serial.print(".");
   client.subscribe(CALLBACK_TOPIC);
 
@@ -53,13 +53,12 @@ void setup() {
   pinMode(NO_FIRE_LED_PIN, OUTPUT);
   gpsSerial.println(PMTK_Q_RELEASE);
 
-
   pinMode(4, OUTPUT);
 
   timer = millis();
   again = true;
 
-  delay(3000);
+  delay(6000);
 }
 
 void loop() {
@@ -71,7 +70,6 @@ void loop() {
 
   if (gps.newNMEAreceived())
     gps.parse(gps.lastNMEA());
-
 
   if (timer > millis()) timer = millis();
 
@@ -96,7 +94,7 @@ void loop() {
 
     row.concat(MAC);
     row.concat(COMMA_SEPARATOR);
-    row.concat("08/06/2016 ");
+    row.concat("15/06/2016 ");
     row.concat(gps.hour);
     row.concat(":");
     row.concat(gps.minute);
