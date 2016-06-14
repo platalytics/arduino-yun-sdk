@@ -16,7 +16,7 @@ Add execution permissions to script `deploy.sh`
 
 Run deployment script
 
-    $ ./deploy.sh <board-ip> <board-username> <board-password> <device-key> <host> <api-key>
+    $ ./deploy.sh <board-ip> <board-username> <board-password> <ssh-port> <device-key> <frontend-host>
 
 This does everything in one go. Sets up protocol libraries and installs required dependencies on Arduino board. The next thing you need to do is to upload sketch program through Arduino IDE from your computer.
 
