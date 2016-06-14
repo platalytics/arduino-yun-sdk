@@ -15,7 +15,7 @@ set remote_end "$board_username@$board_ip:$destination"
 send_user "\ntransmitting $target to remote directory: $remote_end...\n"
 
 # scp automatically creates the missing directory
-spawn scp -P $ssh_port -r $target $remote_end
+spawn scp -P ${ssh_port} -r ${target} ${remote_end}
 expect {
     # In case this is the first time
     -re ".*yes/no.*" {

@@ -1,15 +1,14 @@
 #!/bin/bash
 
-if [ $# -ne 7 ]; then
-    echo "usage: ./deploy.sh <board-ip> <board-username> <board-password> <ssh-port> <device-key> <host> <api-key>"
+if [ $# -ne 6 ]; then
+    echo "usage: ./deploy.sh <board-ip> <board-username> <board-password> <ssh-port> <device-key> <frontend-host>"
 else
     board_ip=$1
     board_username=$2
     board_password=$3
     ssh_port=$4
     device_id=$5
-    host=$6
-    api_key=$7
+    frontend_host=$6
 
     # defining paths
     libraries="./lib"
@@ -20,7 +19,7 @@ else
     chmod 755 ./setup.sh
 
     echo "starting..."
-    curl -H 'Content-Type: application/json' -X POST -d '{"device_key":"'${device_id}'","status":"true","step":"1"}' http://${host}/iot/api/devices/deploy?api_key=${api_key}
+    curl -H 'Content-Type: application/json' -X POST -d '{"device_key":"'${device_id}'","status":"true","step":"1"}' ${frontend_host}
 
     # monitoring script deployment
     ./copy.sh ${board_ip} ${board_username} ${board_password} ${ssh_port} ${core_path} /root/ 1>/dev/null
@@ -31,9 +30,8 @@ else
     # copying library files
     ./copy.sh ${board_ip} ${board_username} ${board_password} ${ssh_port} ${libraries} /root/ 1>/dev/null
 
-
-    curl -H 'Content-Type: application/json' -X POST -d '{"device_key":"'${device_id}'","status":"true","step":"2"}' http://${host}/iot/api/devices/deploy?api_key=${api_key}
+    curl -H 'Content-Type: application/json' -X POST -d '{"device_key":"'${device_id}'","status":"true","step":"2"}' ${frontend_host}
 
     # setup
-    ./setup.sh ${board_ip} ${board_username} ${board_password} ${device_id} ${host} ${api_key} ${ssh_port}
+    ./setup.sh ${board_ip} ${board_username} ${board_password} ${ssh_port} ${device_id} ${frontend_host}
 fi
