@@ -27,11 +27,23 @@ expect {
 
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"3\"}' ${frontend_host}\r" }
 # pre-installation
+
+expect "*~#" { send "chmod 775 /root/core/get-pip.py\r" }
+g
 expect "*~#" { send "opkg update\r" }
-expect "*~#" { send "opkg install distribute\r" }
+#expect "*~#" { send "opkg install distribute\r" }
+
+expect "*~#" { send "opkg install libffi\r" }
+expect "*~#" { send "opkg install libopenssl\r" }
+expect "*~#" { send "opkg install python-mini\r" }
+expect "*~#" { send "opkg install python\r" }
+
 expect "*~#" { send "opkg install python-openssl\r" }
 expect "*~#" { send "opkg install coreutils-nohup\r" }
-expect "*~#" { send "easy_install pip\r" }
+expect "*~#" { send "python /root/core/get-pip.py\r" }
+
+
+#expect "*~#" { send "easy_install pip\r" }
 
 # installing local/offline versions of supported python libraries 
 expect "*~#" { send "pip install /root/lib/paho-mqtt-1.1.tar.gz\r" }
