@@ -29,7 +29,7 @@ expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"d
 # pre-installation
 
 expect "*~#" { send "chmod 775 /root/core/get-pip.py\r" }
-g
+
 expect "*~#" { send "opkg update\r" }
 #expect "*~#" { send "opkg install distribute\r" }
 
