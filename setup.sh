@@ -69,8 +69,8 @@ expect "*~#" { send "nohup python /root/core/controls/controlsdaemon.py &\r" }
 # adding bootloader entries
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"5\"}' ${frontend_host}\r" }
 expect "*~#" { send "cat /root/core/bootloader/entry 1>/etc/rc.local\r" }
-expect "*~#" { send "echo 'nohup sh -c '/root/core/logger/loggerdaemon.py' 1>/dev/null 2>&1 &' >> /etc/rc.local\r" }
-expect "*~#" { send "echo 'nohup sh -c '/root/core/controls/controlsdaemon.py' 1>/dev/null 2>&1 &' >> /etc/rc.local\r" }
+expect "*~#" { send "echo 'nohup python /root/core/logger/loggerdaemon.py &' >> /etc/rc.local\r" }
+expect "*~#" { send "echo 'nohup python /root/core/controls/controlsdaemon.py &' >> /etc/rc.local\r" }
 expect "*~#" { send "echo 'exit 0' >> /etc/rc.local\r" }
 
 # cleaning up
