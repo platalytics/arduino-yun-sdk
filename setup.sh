@@ -13,7 +13,7 @@ set frontend_host [lindex $argv 5]
 set remote_end "$board_username@$board_ip"
 
 send_user "\nmake sure your yun board is connected to internet to install these dependencies"
-send_user "\n- distribute\n- python-openssl\n- pip\n- paho-mqtt-1.1\n- kafka-python-1.1.1\n"
+send_user "\n- distribute\n- python-openssl\n- pip\n- paho-mqtt-1.1\n"
 
 spawn ssh ${remote_end} -p ${ssh_port}
 expect {
@@ -28,7 +28,7 @@ expect {
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"3\"}' ${frontend_host}\r" }
 # pre-installation
 
-expect "*~#" { send "chmod 775 /root/core/get-pip.py\r" }
+#expect "*~#" { send "chmod 775 /root/core/get-pip.py\r" }
 
 expect "*~#" { send "opkg update\r" }
 #expect "*~#" { send "opkg install distribute\r" }
@@ -40,13 +40,17 @@ expect "*~#" { send "opkg install python\r" }
 
 expect "*~#" { send "opkg install python-openssl\r" }
 expect "*~#" { send "opkg install coreutils-nohup\r" }
-expect "*~#" { send "python /root/core/get-pip.py\r" }
+#expect "*~#" { send "python /root/core/get-pip.py\r" }
 
+expect "*~#" { send "wget --no-check-certificate https://bootstrap.pypa.io/ez_setup.py\r" }
+expect "*~#" { send "python ez_setup.py --insecure\r" }
+
+expect "*~#" { send "easy_install pip\r" }
 
 #expect "*~#" { send "easy_install pip\r" }
 
 # installing local/offline versions of supported python libraries 
-expect "*~#" { send "pip install /root/lib/paho-mqtt-1.1.tar.gz\r" }
+expect "*~#" { send "pip install paho-mqtt\r" }
 # expect "*~#" { send "pip install /root/lib/kafka-python-1.1.1.tar.gz\r" }
 
 # other protocol packages
@@ -84,6 +88,6 @@ expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"d
 # completion ack
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"8\"}' ${frontend_host}\r" }
 
-expect "*~#" { send "exit\r" }
+expect "*~#" { send "reboot\r" }
 
 interact

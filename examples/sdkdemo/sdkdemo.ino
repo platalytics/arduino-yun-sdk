@@ -26,7 +26,6 @@ Adafruit_GPS gps(&gpsSerial);
 #define SENSOR_MIN 0
 #define SENSOR_MAX 1024
 #define COMMA_SEPARATOR ","
-#define MAC "B4:21:8A:F0:07:56"
 
 YunClient net;
 MQTTClient client;
@@ -53,7 +52,7 @@ void setup() {
   pinMode(NO_FIRE_LED_PIN, OUTPUT);
   gpsSerial.println(PMTK_Q_RELEASE);
 
-  pinMode(4, OUTPUT);
+  //pinMode(4, OUTPUT);
 
   timer = millis();
   again = true;
@@ -92,7 +91,7 @@ void loop() {
         break;
     }
 
-    row.concat(MAC);
+    row.concat(KEY);
     row.concat(COMMA_SEPARATOR);
     row.concat("15/06/2016 ");
     row.concat(gps.hour);
@@ -137,7 +136,7 @@ void loop() {
 
 void messageReceived(String topic, String payload, char *bytes, unsigned int length) {
   // data coming in format D[HEX]:[HI/LO]
-  
+  /*
   int pin = -1;
   if (payload[1] >= 'A' && payload[1] <= 'D') pin = int(payload[1] - 55);
   else pin = payload[1] - 48;
@@ -149,5 +148,6 @@ void messageReceived(String topic, String payload, char *bytes, unsigned int len
       digitalWrite(pin, LOW);
     }
   }
+  */
 }
 
