@@ -66,9 +66,9 @@ expect "*~#" { send "chmod 775 /root/src/mqtt/mqtt-sender.py\r" }
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"4\"}' ${frontend_host}\r" }
 
 expect "*~#" { send "echo ${device_id} 1>/root/key.conf\r" }
-expect "*~#" { send "nohup python /root/core/logger/loggerdaemon.py &\r" }
+#expect "*~#" { send "nohup python /root/core/logger/loggerdaemon.py &\r" }
 expect "*~#" { send "echo ${device_id}controlcallback 1>/root/controls.conf\r" }
-expect "*~#" { send "nohup python /root/core/controls/controlsdaemon.py &\r" }
+#expect "*~#" { send "nohup python /root/core/controls/controlsdaemon.py &\r" }
 
 # adding bootloader entries
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"5\"}' ${frontend_host}\r" }

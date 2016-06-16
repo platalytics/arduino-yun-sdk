@@ -9,7 +9,7 @@
 # credits to whoever extracted this command sequence from YunDiskSpaceExpander.ino
 
 opkg update
-opkg install e2fsprogs fdisk
+opkg install e2fsprogs mkdosfs fdisk rsync
 
 if fdisk -l |grep /dev/sda > /dev/null; then
     echo "Start"
@@ -35,6 +35,16 @@ umount /tmp/cproot
 uci add fstab mount
 uci set fstab.@mount[0].target=/
 uci set fstab.@mount[0].device=/dev/sda1
+uci set fstab.@mount[0].fstype=ext4
+uci set fstab.@mount[0].enabled=1
+uci set fstab.@mount[0].enabled_fsck=0
+uci set fstab.@mount[0].options=rw,sync,noatime,nodiratime
+uci commit
+
+
+uci add fstab mount
+uci set fstab.@mount[0].target=/overlay
+uci set fstab.@mount[0].device=/dev/sda2
 uci set fstab.@mount[0].fstype=ext4
 uci set fstab.@mount[0].enabled=1
 uci set fstab.@mount[0].enabled_fsck=0

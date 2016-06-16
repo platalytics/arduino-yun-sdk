@@ -93,7 +93,7 @@ void loop() {
 
     row.concat(KEY);
     row.concat(COMMA_SEPARATOR);
-    row.concat("15/06/2016 ");
+    row.concat("17/06/2016 ");
     row.concat(gps.hour);
     row.concat(":");
     row.concat(gps.minute);
@@ -116,14 +116,14 @@ void loop() {
 
     row.concat(COMMA_SEPARATOR);
     if (fire && again) {
-      row.concat("Fire");
+      row.concat("Fire,Flame");
       client.publish(PUBLISH_TOPIC, row);
       client.publish(PUBLISH_TOPIC_HELPER, row);
       Serial.println(row);
       again = false;
     }
     else if (!fire) {
-      row.concat("NoFire");
+      row.concat("NoFire,Flame");
       client.publish(PUBLISH_TOPIC, row);
       client.publish(PUBLISH_TOPIC_HELPER, row);
       Serial.println(row);
