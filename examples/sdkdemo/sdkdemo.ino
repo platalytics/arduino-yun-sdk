@@ -117,6 +117,8 @@ void loop() {
     row.concat(COMMA_SEPARATOR);
     if (fire && again) {
       row.concat("Fire");
+      row.concat(COMMA_SEPARATOR);
+      row.concat("Flame");
       client.publish(PUBLISH_TOPIC, row);
       client.publish(PUBLISH_TOPIC_HELPER, row);
       Serial.println(row);
@@ -124,6 +126,8 @@ void loop() {
     }
     else if (!fire) {
       row.concat("NoFire");
+      row.concat(COMMA_SEPARATOR);
+      row.concat("Flame");
       client.publish(PUBLISH_TOPIC, row);
       client.publish(PUBLISH_TOPIC_HELPER, row);
       Serial.println(row);
