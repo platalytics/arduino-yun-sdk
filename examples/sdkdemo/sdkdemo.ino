@@ -116,14 +116,18 @@ void loop() {
 
     row.concat(COMMA_SEPARATOR);
     if (fire && again) {
-      row.concat("Fire,Flame");
+      row.concat("Fire");
+      row.concat(COMMA_SEPARATOR);
+      row.concat("Flame");
       client.publish(PUBLISH_TOPIC, row);
       client.publish(PUBLISH_TOPIC_HELPER, row);
       Serial.println(row);
       again = false;
     }
     else if (!fire) {
-      row.concat("NoFire,Flame");
+      row.concat("NoFire");
+      row.concat(COMMA_SEPARATOR);
+      row.concat("Flame");
       client.publish(PUBLISH_TOPIC, row);
       client.publish(PUBLISH_TOPIC_HELPER, row);
       Serial.println(row);
