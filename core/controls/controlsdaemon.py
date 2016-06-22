@@ -24,6 +24,7 @@ client = mqtt.Client()
 client.on_message = on_message
 client.connect(mqtt_broker_ip, mqtt_broker_port, 60)
 
+# reading info file
 f = open('/root/controls.conf', 'r')
 client.subscribe(f.read()[:-1], 0)
 f.close()
