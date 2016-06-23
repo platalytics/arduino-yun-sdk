@@ -26,12 +26,9 @@ expect {
 
 
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"3\"}' ${frontend_host}\r" }
+
 # pre-installation
-
-#expect "*~#" { send "chmod 775 /root/core/get-pip.py\r" }
-
 expect "*~#" { send "opkg update\r" }
-#expect "*~#" { send "opkg install distribute\r" }
 
 expect "*~#" { send "opkg install libffi\r" }
 expect "*~#" { send "opkg install libopenssl\r" }
@@ -40,35 +37,25 @@ expect "*~#" { send "opkg install python\r" }
 
 expect "*~#" { send "opkg install python-openssl\r" }
 expect "*~#" { send "opkg install coreutils-nohup\r" }
-#expect "*~#" { send "python /root/core/get-pip.py\r" }
 
 expect "*~#" { send "wget --no-check-certificate https://bootstrap.pypa.io/ez_setup.py\r" }
 expect "*~#" { send "python ez_setup.py --insecure\r" }
 
 expect "*~#" { send "easy_install pip\r" }
 
-#expect "*~#" { send "easy_install pip\r" }
-
-# installing local/offline versions of supported python libraries 
+# installing supported python libraries
 expect "*~#" { send "pip install paho-mqtt\r" }
-# expect "*~#" { send "pip install /root/lib/kafka-python-1.1.1.tar.gz\r" }
-
-# other protocol packages
-# expect "*~#" { send "pip install /root/lib/amqp-1.4.7.tar.gz\r" }
-# expect "*~#" { send "pip install /root/lib/CoAPthon-4.0.0.tar.gz -r /root/lib/coap_req\r" }
 
 # setting permissions
 expect "*~#" { send "chmod 775 /root/core/logger/loggerdaemon.py\r" }
 expect "*~#" { send "chmod 775 /root/core/controls/controlsdaemon.py\r" }
-expect "*~#" { send "chmod 775 /root/src/mqtt/mqtt-sender.py\r" }
+expect "*~#" { send "chmod 775 /root/src/main/mqtt/mqtt-sender.py\r" }
 
 # setting running daemons
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"4\"}' ${frontend_host}\r" }
 
 expect "*~#" { send "echo ${device_id} 1>/root/key.conf\r" }
-#expect "*~#" { send "nohup python /root/core/logger/loggerdaemon.py &\r" }
 expect "*~#" { send "echo ${device_id}controlcallback 1>/root/controls.conf\r" }
-#expect "*~#" { send "nohup python /root/core/controls/controlsdaemon.py &\r" }
 
 # adding bootloader entries
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"5\"}' ${frontend_host}\r" }
@@ -87,7 +74,6 @@ expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"d
 
 # completion ack
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"8\"}' ${frontend_host}\r" }
-
 expect "*~#" { send "reboot\r" }
 
 interact
