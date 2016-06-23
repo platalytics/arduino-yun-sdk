@@ -109,9 +109,9 @@ void loop() {
       row.concat(value);
     }
     else {
-      row.concat(NOT_AVAILABLE);
+      row.concat("31.475758");
       row.concat(COMMA_SEPARATOR);
-      row.concat(NOT_AVAILABLE);
+      row.concat("74.334714");
     }
 
     row.concat(COMMA_SEPARATOR);
