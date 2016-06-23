@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -ne 12 ]; then
-    echo """Usage: ./deploy.sh -<option1> <value1> ...
+    echo "Usage: ./deploy.sh -<option1> <value1> ...
     -i IP address
     -u username having root access
     -p password of specified username
