@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-import paho.mqtt.publish as publish
-import sys, os, time, json, random
+import paho.mqtt.publish as publish, sys, os, time, json, random
 
 
 mqtt_broker_ip = '45.55.159.119'

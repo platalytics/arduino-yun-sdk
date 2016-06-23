@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
-import os
-import sys
-import paho.mqtt.client as mqtt
+import os, sys, paho.mqtt.client as mqtt
 
 
 mqtt_broker_ip = '45.55.159.119'
@@ -26,6 +24,7 @@ client = mqtt.Client()
 client.on_message = on_message
 client.connect(mqtt_broker_ip, mqtt_broker_port, 60)
 
+# reading info file
 f = open('/root/controls.conf', 'r')
 client.subscribe(f.read()[:-1], 0)
 f.close()
