@@ -5,7 +5,7 @@ def construct_json(memory_stats_data, cpu_utilization, process_count, total_disk
     return [{'MemoryStats': memory_stats_data},
             {'CPUStats': {
                 'CPUPercentage': cpu_utilization,
-                'ThreadCount': 0,
+                'ThreadCount': 0,   # no threads available in yun
                 'ProcessCount': process_count}
             },
             {'DiskStats': {
