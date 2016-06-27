@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-import os, sys, paho.mqtt.client as mqtt
+import paho.mqtt.client as mqtt
+import os, sys
 
 
 mqtt_broker_ip = '45.55.159.119'

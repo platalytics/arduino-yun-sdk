@@ -58,23 +58,23 @@ expect "*~#" { send "pip install paho-mqtt\r" }
 # expect "*~#" { send "pip install /root/lib/CoAPthon-4.0.0.tar.gz -r /root/lib/coap_req\r" }
 
 # setting permissions
-expect "*~#" { send "chmod 775 /root/core/logger/loggerdaemon.py\r" }
-expect "*~#" { send "chmod 775 /root/core/controls/controlsdaemon.py\r" }
+expect "*~#" { send "chmod 775 /root/core/logger/logger_daemon.py\r" }
+expect "*~#" { send "chmod 775 /root/core/controls/controls_daemon.py\r" }
 expect "*~#" { send "chmod 775 /root/src/mqtt/mqtt-sender.py\r" }
 
 # setting running daemons
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"4\"}' ${frontend_host}\r" }
 
 expect "*~#" { send "echo ${device_id} 1>/root/key.conf\r" }
-#expect "*~#" { send "nohup python /root/core/logger/loggerdaemon.py &\r" }
+#expect "*~#" { send "nohup python /root/core/logger/logger_daemon.py &\r" }
 expect "*~#" { send "echo ${device_id}controlcallback 1>/root/controls.conf\r" }
-#expect "*~#" { send "nohup python /root/core/controls/controlsdaemon.py &\r" }
+#expect "*~#" { send "nohup python /root/core/controls/controls_daemon.py &\r" }
 
 # adding bootloader entries
 expect "*~#" { send "curl -H \"Content-Type: application/json\" -X POST -d '{\"device_key\":\"'${device_id}'\",\"status\":\"true\",\"step\":\"5\"}' ${frontend_host}\r" }
 expect "*~#" { send "cat /root/core/bootloader/entry 1>/etc/rc.local\r" }
-expect "*~#" { send "echo 'nohup python /root/core/logger/loggerdaemon.py &' >> /etc/rc.local\r" }
-expect "*~#" { send "echo 'nohup python /root/core/controls/controlsdaemon.py &' >> /etc/rc.local\r" }
+expect "*~#" { send "echo 'nohup python /root/core/logger/logger_daemon.py &' >> /etc/rc.local\r" }
+expect "*~#" { send "echo 'nohup python /root/core/controls/controls_daemon.py &' >> /etc/rc.local\r" }
 expect "*~#" { send "echo 'exit 0' >> /etc/rc.local\r" }
 
 # cleaning up

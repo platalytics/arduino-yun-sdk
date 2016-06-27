@@ -1,9 +1,9 @@
 #!/bin/sh
 # copy this memory expansion in your Arduino Yun device
 # set permissions 
-# chmod +x /root/memory-expansion.sh
+# chmod +x /root/memory_expansion.sh
 # and run it
-# /root/memory-expansion.sh
+# /root/memory_expansion.sh
 #
 # simplesd.sh from internet https://www.dropbox.com/s/jl4oytptxrb6q5u/simplesd.sh
 # credits to whoever extracted this command sequence from YunDiskSpaceExpander.ino
