@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-import os
-
 
 def get_process_count():
-    return int(os.popen('ps | wc -l').read())
+    from os import popen
+    with popen('ps | wc -l') as f:
+        return int(f.read())
