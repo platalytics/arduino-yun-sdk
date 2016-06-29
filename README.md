@@ -1,12 +1,12 @@
 # Arduino Yún SDK
 
-Before you dive in to setting up the SDK for your device there are some instructions that need to be followed along.
+Before you dive into setting up the SDK for your device, follow instructions below.
 
 1. Expand disk space using https://www.arduino.cc/en/Tutorial/ExpandingYunDiskSpace
-2. You need a `linux`-based environment to setup
+2. You need a Linux based environment (Mac works too) to setup
 3. Make sure you have `expect` utility installed
 
-    Get on **Ubuntu** executing following command in terminal
+    Get `expect` on Ubuntu/Debian
         
         $ sudo apt-get install expect
 
@@ -24,11 +24,11 @@ Run deployment script
         -d device ID/key generated from Platalytics Platform
         -f frontend host
 
-Example: 
+Example
     
     $ ./deploy -i 192.168.1.X -u root -p arduino -s 22 -d KEY -f http://host:port/xxx/xxx?api_key=xxx
 
 
-This does everything in one go. Sets up protocol libraries and installs required dependencies on Arduino board. The next thing you need to do is to upload sketch program through Arduino IDE from your computer.
+This does everything in one go. Sets up protocol libraries and installs required dependencies on Arduino board. The next thing you need to do is to upload sketch program to your Arduino board.
 
 You can find example sketch programs in `examples/` folder.
