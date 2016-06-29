@@ -11,7 +11,6 @@ set target [lindex $argv 4]
 set destination [lindex $argv 5]
 set remote_end "$board_username@$board_ip:$destination"
 
-
 send_user "\ntransmitting $target to remote directory: $remote_end...\n"
 
 # scp automatically creates the missing directory
