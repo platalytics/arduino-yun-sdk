@@ -26,7 +26,7 @@ Run deployment script
 
 Example
     
-    $ ./deploy -i 192.168.1.X -u root -p arduino -s 22 -d KEY -f http://host:port/xxx/xxx?api_key=xxx
+    $ ./deploy -i 192.168.1.X -u root -p arduino -s 22 -d KEY -f [url]
 
 
 This does everything in one go. Sets up protocol libraries and installs required dependencies on Arduino board. The next thing you need to do is to upload sketch program to your Arduino board.
