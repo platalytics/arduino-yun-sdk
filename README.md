@@ -17,7 +17,7 @@ Add execution permissions to script `deploy.sh`
 Run deployment script
 
     $ ./deploy.sh -<option1> <value1> ...
-        -i IP address
+	    -i IP address
         -u username having root access
         -p password of specified username
         -s SSH port
