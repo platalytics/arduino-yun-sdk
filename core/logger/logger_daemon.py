@@ -10,7 +10,7 @@ from collector.disk_consumption import get_total_avail_space, get_total_disk_spa
 from collector.json import construct_json
 
 
-mqtt_broker_ip = '45.55.159.119'
+mqtt_broker_ip = '104.236.51.246'
 mqtt_broker_port = 1883
 
 # fetching topic name
@@ -32,6 +32,9 @@ def dump_stats_forever():
         print json_data
 
         publish.single(topic_name + 'mon', json_data, hostname=mqtt_broker_ip, port=mqtt_broker_port)
+        
+        del all_stats
+        del json_data
         time.sleep(3)
 
 

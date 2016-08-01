@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 import os, sys
 
 
-mqtt_broker_ip = '45.55.159.119'
+mqtt_broker_ip = '104.236.51.246'
 mqtt_broker_port = 1883
 
 def perform_action(action):
