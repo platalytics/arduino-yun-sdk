@@ -40,11 +40,11 @@ void setup() {
   gps.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ);
   gps.sendCommand(PGCMD_ANTENNA);
 
-  //Serial.println("REBOOT");
+  Serial.println("REBOOT");
 
   client.begin(BROKER_IP, net);
 
-  //Serial.println("connecting...");
+  Serial.println("connecting...");
   while (!client.connect("arduino", "try", "try")) Serial.print(".");
   client.subscribe(CALLBACK_TOPIC);
 
@@ -140,7 +140,7 @@ void loop() {
 
 void messageReceived(String topic, String payload, char *bytes, unsigned int length) {
   // data coming in format D[HEX]:[HI/LO]
-  /*
+  
   int pin = -1;
   if (payload[1] >= 'A' && payload[1] <= 'D') pin = int(payload[1] - 55);
   else pin = payload[1] - 48;
@@ -152,6 +152,5 @@ void messageReceived(String topic, String payload, char *bytes, unsigned int len
       digitalWrite(pin, LOW);
     }
   }
-  */
 }
 
